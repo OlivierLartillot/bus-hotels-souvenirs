@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to registration form{% endblock %}
+
+{% block body %}
+
+    <div class="container text-center mt-5">
+
+        <div class="row step1">
+            <div class="col">
+            (step 1 )
+                <h2>{% trans %} Enter your hotel {% endtrans %}</h2>
+                liste déroulante hotels +heure passage
+                <br>
+                valider mon hotel -> cacher ce premier step
+            </div>
+        </div>
+
+<hr>
+        <div class="row step2">
+            <div class="col">
+            (step 2)
+                <h2>{% trans %} Enter your informations {% endtrans %}</h2>
+                autres infos du formulaire
+                <br>
+                valider mon formulaire -> envoyer les infos en bdd
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col">
+
+                <h2>envvoi vers page de confirmation</h2>
+                Votre demande a bien été prise en compte 
+                <br>
+                vous devrez vous rendre le 14/02 a "accueil" de l'hotel "Melia" à 11:20
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

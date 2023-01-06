@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CreditsController!{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+    <h1 class="container mb-5">Specials Thanks to the artists:</h1>
+
+        <div class="row">
+            <div class="pb-3">
+                <img src="{{ asset('images/drapeaux/spain.png') }}" alt="spanish flag"  class="flag-credits">
+                <a href="https://www.flaticon.com/free-icons/spain" title="spain icons">Spain icons created by Freepik - Flaticon</a>
+            </div>
+            <div class="pb-3">
+                <img src="{{ asset('images/drapeaux/france.png') }}" alt="french flag"  class="flag-credits">
+                <a href="https://www.flaticon.com/free-icons/france" title="france icons">France icons created by Freepik - Flaticon</a>
+            </div>
+            <div class="mb-3">
+                <img src="{{ asset('images/drapeaux/united-kingdom.png') }}" alt="united-kingdom flag"  class="flag-credits">
+                <a href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">Uk flag icons created by Freepik - Flaticon</a>
+            </div>
+            <div class="mb-3">
+                <img src="{{ asset('images/drapeaux/russia.png') }}" alt="russian flag"  class="flag-credits">
+                <a href="https://www.flaticon.com/free-icons/russia" title="russia icons">Russia icons created by GeekClick - Flaticon</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

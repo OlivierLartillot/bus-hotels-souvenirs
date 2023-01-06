@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to bus tour hotel souvenirs{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h2 class="text-center my-5">Please Check your langage</h2>
+        <div class="row text-center">
+            <div class="col-3">
+                <a href=""><img src="{{ asset('images/drapeaux/spain.png') }}" alt="spanish flag"  class="flag-language"></a>
+            </div>
+            <div class="col-3">
+                <a href=""><img src="{{ asset('images/drapeaux/france.png') }}" alt="french flag"  class="flag-language"></a>
+            </div>
+            <div class="col-3">
+                <a href=""><img src="{{ asset('images/drapeaux/united-kingdom.png') }}" alt="UK flag"  class="flag-language"></a>
+            </div>
+            <div class="col-3">
+                <a href=""><img src="{{ asset('images/drapeaux/russia.png') }}" alt="Russian flag"  class="flag-language"></a>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

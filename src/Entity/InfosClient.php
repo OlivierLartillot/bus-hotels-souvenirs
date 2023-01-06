@@ -16,9 +16,6 @@ class InfosClient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'infosClient', targetEntity: InfoBus::class)]
-    private Collection $hotel;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $day = null;
 
@@ -34,44 +31,15 @@ class InfosClient
     #[ORM\Column(length: 30)]
     private ?string $whatsAppNumber = null;
 
-    public function __construct()
-    {
-        $this->hotel = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'infosClients')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?InfoBus $bus = null;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, InfoBus>
-     */
-    public function getHotel(): Collection
-    {
-        return $this->hotel;
-    }
-
-    public function addHotel(InfoBus $hotel): self
-    {
-        if (!$this->hotel->contains($hotel)) {
-            $this->hotel->add($hotel);
-            $hotel->setInfosClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHotel(InfoBus $hotel): self
-    {
-        if ($this->hotel->removeElement($hotel)) {
-            // set the owning side to null (unless already changed)
-            if ($hotel->getInfosClient() === $this) {
-                $hotel->setInfosClient(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getDay(): ?\DateTimeInterface
@@ -130,6 +98,18 @@ class InfosClient
     public function setWhatsAppNumber(string $whatsAppNumber): self
     {
         $this->whatsAppNumber = $whatsAppNumber;
+
+        return $this;
+    }
+
+    public function getBus(): ?InfoBus
+    {
+        return $this->bus;
+    }
+
+    public function setBus(?InfoBus $bus): self
+    {
+        $this->bus = $bus;
 
         return $this;
     }

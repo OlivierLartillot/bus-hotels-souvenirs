@@ -18,7 +18,7 @@ class LieuDeRdv
     #[ORM\Column(length: 60)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: InfoBus::class)]
+    #[ORM\OneToMany(mappedBy: 'location', targetEntity: InfoBus::class)]
     private Collection $infoBuses;
 
     public function __construct()

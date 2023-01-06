@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="MgLBxGg" resname="Specials Thanks to the artists:">
+        <source>Specials Thanks to the artists:</source>
+        <target>Remerciements des artistes:</target>
+      </trans-unit>
+      <trans-unit id="zZt8ReA" resname="Please Check your language">
+        <source>Please Check your language</source>
+        <target>Choissisez votre language</target>
+      </trans-unit>
+      <trans-unit id="r1K4tyV" resname="You have choosen the english langage, do you want to continue ?">
+        <source>You have choosen the english langage, do you want to continue ?</source>
+        <target>Vous avez choisi le français, voulez vous continuer ?</target>
+      </trans-unit>
+      <trans-unit id="ImNmwzA" resname="Next Step">
+        <source>Next Step</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="Lzfz0_l" resname="Enter your hotel">
+        <source>Enter your hotel</source>
+        <target>Entrez votre hôtel de résidence</target>
+      </trans-unit>
+      <trans-unit id="w_kxi3m" resname="Enter your informations">
+        <source>Enter your informations</source>
+        <target>Entrez vos informations</target>
+      </trans-unit>
+      <trans-unit id="WoZGx29" resname="Bus tour">
+        <source>Bus tour</source>
+        <target>Bus tour</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Accueil</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

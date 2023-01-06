@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InfosClient index{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Envoi des WhatsApp</h1>
+<div class="table-responsive">
+  <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Day</th>
+                <th>Name</th>
+                <th>Client</th>
+                <th>Commerçant</th>
+{#                 <th>NumberPersons</th>
+                <th>RoomNumber</th>
+                <th>WhatsAppNumber</th>
+                <th>actions</th>
+ #}            </tr>
+        </thead>
+        <tbody>
+        {% for infos_client in infos_clients %}
+            <tr>
+                <td>{{ infos_client.id }}</td>
+                <td>{{ infos_client.day ? infos_client.day|date('d M') : '' }}</td>
+                <td>{{ infos_client.name }}</td>
+{#                 <td>{{ infos_client.numberPersons }}</td>
+                <td>{{ infos_client.bus.hotel }}</td>
+                <td>{{ infos_client.roomNumber }}</td>
+                <td>{{ infos_client.whatsAppNumber }}</td>
+ #}                <td>
+                    <a href="{{ path('app_infos_client_edit', {'id': infos_client.id}) }}" class="btn btn-danger">Client</a>
+                   </td><td>
+
+                    <a href="{{ path('app_infos_client_show', {'id': infos_client.id}) }}" class="btn btn-danger">Commercante</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <a href="{{ path('app_infos_client_new') }}">Create new</a>
+</div>
+{% endblock %}

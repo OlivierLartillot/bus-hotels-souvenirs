@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\InfoBusRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,8 +26,14 @@ class InfoBus
     #[ORM\JoinColumn(nullable: false)]
     private ?LieuDeRdv $location = null;
 
-    #[ORM\ManyToOne(inversedBy: 'hotel')]
-    private ?InfosClient $infosClient = null;
+    #[ORM\OneToMany(mappedBy: 'bus', targetEntity: InfosClient::class)]
+    private Collection $infosClients;
+
+    public function __construct()
+    {
+        $this->infosClients = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -68,15 +76,39 @@ class InfoBus
         return $this;
     }
 
-    public function getInfosClient(): ?InfosClient
+    /**
+     * @return Collection<int, InfosClient>
+     */
+    public function getInfosClients(): Collection
     {
-        return $this->infosClient;
+        return $this->infosClients;
     }
 
-    public function setInfosClient(?InfosClient $infosClient): self
+    public function addInfosClient(InfosClient $infosClient): self
     {
-        $this->infosClient = $infosClient;
+        if (!$this->infosClients->contains($infosClient)) {
+            $this->infosClients->add($infosClient);
+            $infosClient->setBus($this);
+        }
 
         return $this;
     }
+
+    public function removeInfosClient(InfosClient $infosClient): self
+    {
+        if ($this->infosClients->removeElement($infosClient)) {
+            // set the owning side to null (unless already changed)
+            if ($infosClient->getBus() === $this) {
+                $infosClient->setBus(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->hotel;
+    }
+
 }

@@ -3,9 +3,44 @@
 {% block title %}New InfosClient{% endblock %}
 
 {% block body %}
+
+<div class="container">
     <h1>Create new InfosClient</h1>
 
-    {{ include('infos_client/_form.html.twig') }}
 
-    <a href="{{ path('app_infos_client_index') }}">back to list</a>
+    {{ form_start(form)  }}
+
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="form-control">
+            {{ form_label(form.day, 'The day') }}
+            {{ form_widget(form.day) }}
+
+            <p>
+                <small class="text-danger">
+                    {{ form_help(form.day) }}
+                </small>
+            </p>
+            <div class="form-error">
+                {{ form_errors(form.day) }}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col" id="some-custom-id">
+                {{ form_row(form.name) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+
+
+
+
+    {# {{ include('infos_client/_form.html.twig') }} #}
+
+    <a href="{{ path('app_infos_client_index') }}" class="btn btn-primary">back to list</a>
+</div>
 {% endblock %}

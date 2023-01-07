@@ -35,7 +35,10 @@ class InfosClient
     #[ORM\JoinColumn(nullable: false)]
     private ?InfoBus $bus = null;
 
-
+    public function __construct()
+    {
+        $this->day = new \DateTime('now');
+    }
 
     public function getId(): ?int
     {

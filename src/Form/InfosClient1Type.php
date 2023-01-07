@@ -12,7 +12,13 @@ class InfosClient1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('day')
+            ->add('day', null , [
+                'widget' => 'single_text',
+                'help' => 'Buses don\'t work at Sunday !',
+                'help_translation_parameters' => [
+                    '%day%' => 'Buses don\'t work at Sunday !',
+                ],
+            ])
             ->add('name')
             ->add('numberPersons')
             ->add('roomNumber')

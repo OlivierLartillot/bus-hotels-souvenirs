@@ -111,4 +111,14 @@ class InfoBus
         return $this->hotel;
     }
 
+    public function __dateToString()
+    {
+        return  $this->getHour()->format('H:i:s');
+    }
+
+    public function getHotelAndHour()
+    {
+        return ucfirst(strtolower($this->getHotel())) .' - '. $this->getHour()->format('H:i');
+    }
+
 }

@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="container">
-    <h1>Create new InfosClient</h1>
+    <h1 class ="text-center my-3">Enter your information</h1>
 
 
     {{ form_start(form)  }}
@@ -14,33 +14,46 @@
             {{ form_errors(form) }}
         </div>
 
-        <div class="form-control">
-            {{ form_label(form.day, 'The day') }}
-            {{ form_widget(form.day) }}
+        <div class="">
+           {{ form_row(form.bus) }}
 
-            <p>
-                <small class="text-danger">
-                    {{ form_help(form.day) }}
-                </small>
-            </p>
-            <div class="form-error">
-                {{ form_errors(form.day) }}
-            </div>
+        </div>
+        <div class="text-center">
+           {{ form_row(form.nextStep) }}
+        </div>
+
+        <div class="">
+           {{ form_row(form.day) }}
         </div>
 
 
-        <div class="row">
-            <div class="col" id="some-custom-id">
-                {{ form_row(form.name) }}
-            </div>
+        <div class="text-center">
+           {{ form_row(form.lastStep) }}
         </div>
+        <div class="">
+           {{ form_row(form.name) }}
+        </div>
+        <div class="">
+           {{ form_row(form.numberPersons) }}
+        </div>
+        <div class="">
+           {{ form_row(form.roomNumber) }}
+        </div>
+        <div class="">
+           {{ form_row(form.whatsAppNumber) }}
+        </div>
+        <div class="text-center">
+           {{ form_row(form.validate) }}
+        </div>
+
     {{ form_end(form) }}
+        </div>
 
 
 
 
     {# {{ include('infos_client/_form.html.twig') }} #}
 
-    <a href="{{ path('app_infos_client_index') }}" class="btn btn-primary">back to list</a>
-</div>
+{#     <a href="{{ path('app_infos_client_index') }}" class="btn btn-primary">back to list</a>
+ #}</div>
 {% endblock %}

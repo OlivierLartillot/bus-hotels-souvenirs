@@ -57,7 +57,9 @@ class InfosClient1Type extends AbstractType
                 'label' => 'Last step'
             ])
             ->add('name')
-            ->add('numberPersons')
+            ->add('numberPersons', null , [
+                'label' => 'Number of persons' 
+                ])
             ->add('roomNumber')
             ->add('whatsAppNumber')
             ->add('validate', SubmitType::class, [

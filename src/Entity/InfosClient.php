@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: InfosClientRepository::class)]
 class InfosClient
@@ -19,7 +20,6 @@ class InfosClient
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\GreaterThanOrEqual('today', null, 'The date must be equal to or greater than today.')]
-    #[Assert\NotEqualTo('sunday', null, 'You can\'t choose a Sunday !')]
     private ?\DateTimeInterface $day = null;
 
     #[ORM\Column(length: 255)]
@@ -119,5 +119,24 @@ class InfosClient
         $this->bus = $bus;
 
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // somehow you have an array of "fake names"
+        $dayOfWeek = $this->getDay()->format('D');
+        $isSunday = false;
+
+        if ($dayOfWeek == "Sun") {
+            $isSunday = true;
+        }
+        
+        // check if the name is actually a fake name
+        if ($isSunday) {
+            $context->buildViolation('You can\'t choose a Sunday !')
+                ->atPath('day')
+                ->addViolation();
+        }
     }
 }

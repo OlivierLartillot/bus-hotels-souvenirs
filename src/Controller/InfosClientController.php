@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('admin/infos/client')]
+//#[Route('admin/infos/client')]
 class InfosClientController extends AbstractController
 {
-    #[Route('/', name: 'app_infos_client_index', methods: ['GET'])]
+    #[Route('/infos-clients', name: 'app_infos_client_index', methods: ['GET'])]
     public function index(InfosClientRepository $infosClientRepository): Response
     {
         return $this->render('infos_client/index.html.twig', [

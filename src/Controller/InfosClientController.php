@@ -34,11 +34,15 @@ class InfosClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $infosClientRepository->save($infosClient, true);
 
-            return $this->redirectToRoute('app_infos_client_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('infos_client/confirmation.html.twig', [
+                'test' => "ceci est la phrase de test",
+                'infosClient' => $infosClient
+            ]);
         }
-
 
         $errorsMessage = null;
         $errors = $validator->validate($infosClient );
@@ -51,6 +55,15 @@ class InfosClientController extends AbstractController
             'form' => $form,
             'errorsMessage' => $errorsMessage,
             'errors' => $errors
+        ]);
+    }
+
+    #[Route('confirmation', name: 'app_confirmation', methods: ['GET'])]
+    public function confirmation(): Response
+    {
+
+        return $this->render('infos_client/confirmation.html.twig', [
+           
         ]);
     }
 

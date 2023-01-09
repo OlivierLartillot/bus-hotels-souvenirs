@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\InfosClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,12 +18,15 @@ class InfosClient
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThanOrEqual('today', null, 'The date must be equal to or greater than today.')]
+    #[Assert\NotEqualTo('sunday', null, 'You can\'t choose a Sunday !')]
     private ?\DateTimeInterface $day = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\LessThan(20)]
     private ?int $numberPersons = null;
 
     #[ORM\Column]

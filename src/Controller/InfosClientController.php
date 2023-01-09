@@ -9,11 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 //#[Route('admin/infos/client')]
 class InfosClientController extends AbstractController
 {
-    #[Route('/infos-clients', name: 'app_infos_client_index', methods: ['GET'])]
+    #[Route('admin/infos-clients', name: 'app_infos_client_index', methods: ['GET'])]
     public function index(InfosClientRepository $infosClientRepository): Response
     {
         return $this->render('infos_client/index.html.twig', [
@@ -22,7 +23,7 @@ class InfosClientController extends AbstractController
     }
 
     #[Route('/new', name: 'app_infos_client_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, InfosClientRepository $infosClientRepository): Response
+    public function new(Request $request, InfosClientRepository $infosClientRepository, ValidatorInterface $validator): Response
     {
         $infosClient = new InfosClient();
         $form = $this->createForm(InfosClient1Type::class, $infosClient);
@@ -34,9 +35,18 @@ class InfosClientController extends AbstractController
             return $this->redirectToRoute('app_infos_client_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('infos_client/new.html.twig', [
+
+        $errorsMessage = null;
+        $errors = $validator->validate($infosClient );
+        if (count($errors) > 0) {
+            $errorsMessage = "The form contains some errors. Please check your answers." ;
+        }
+
+        return $this->render('infos_client/new.html.twig', [
             'infos_client' => $infosClient,
             'form' => $form,
+            'errorsMessage' => $errorsMessage,
+            'errors' => $errors
         ]);
     }
 

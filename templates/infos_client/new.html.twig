@@ -11,9 +11,16 @@
     <div id="form_wrapper" class="mt-5 p-3 bg-light">
     {{ form_start(form)  }}
 
-        <div class="my-custom-class-for-errors">
-            {{ form_errors(form) }}
-        </div>
+        {% if errorsMessage != null %} 
+            <div>
+                <span class="text-danger">{{ errorsMessage }}</span>
+                <ul>
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
         <div id="preStep">
             <div  class="">

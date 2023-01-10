@@ -48,6 +48,12 @@ class InfosClient
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column]
+    private ?bool $envoiClient = null;
+
+    #[ORM\Column]
+    private ?bool $envoiCommercant = null;
+
     public function __construct()
     {
         $this->day = new \DateTime('now');
@@ -182,6 +188,30 @@ class InfosClient
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function isEnvoiClient(): ?bool
+    {
+        return $this->envoiClient;
+    }
+
+    public function setEnvoiClient(bool $envoiClient): self
+    {
+        $this->envoiClient = $envoiClient;
+
+        return $this;
+    }
+
+    public function isEnvoiCommercant(): ?bool
+    {
+        return $this->envoiCommercant;
+    }
+
+    public function setEnvoiCommercant(bool $envoiCommercant): self
+    {
+        $this->envoiCommercant = $envoiCommercant;
 
         return $this;
     }

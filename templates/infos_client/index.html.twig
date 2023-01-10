@@ -2,6 +2,7 @@
 
 {% block title %}InfosClient index{% endblock %}
 
+
 {% block body %}
 
 <div class="container">
@@ -34,11 +35,11 @@
                 <td>{{ infos_client.roomNumber }}</td>
                 <td>{{ infos_client.whatsAppNumber }}</td>
  #}                <td>
-                    <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="btn btn-danger">Client</a>
-                   </td><td>
-
-                    <a href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="btn btn-danger">Commercante</a>
-                </td>
+                        <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="lienClient {% if infos_client.envoiClient == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Client</a>
+                   </td>
+                   <td>
+                    <a id="lienCommercant" href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="{% if infos_client.envoiCommercant == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Commercante</a>
+                    </td>
             </tr>
         {% else %}
             <tr>
@@ -51,4 +52,31 @@
 
     <a href="{{ path('app_infos_client_new') }}">Create new</a>
 </div>
+
+
+       <script>
+       let liens = document.querySelectorAll('.lienClient');
+       console.log('liste des liens' + liens)
+        
+            for (let lien of liens) {
+                console.log('chaque lien : ' + lien)
+                lien.addEventListener('click', handleClick);
+            }
+
+                function handleClick (event) {
+                
+                var url = this.getAttribute('href');
+                event.preventDefault();
+                window.open(url);
+                window.setTimeout(() => {
+                    location.reload(true);
+                }, 2000);
+                    
+                
+                }   
+
+
+
+        </script>
+
 {% endblock %}

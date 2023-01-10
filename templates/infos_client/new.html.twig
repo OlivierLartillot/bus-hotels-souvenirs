@@ -58,7 +58,9 @@
             <div class="text-center">
             {{ form_row(form.validate) }}
             </div>
-            
+            <div class="text-center">
+                <input type="hidden" value="{{ app.session.get('_locale') }}"/>
+            </div>
             
             {{ form_widget(form._token) }}
         </div>

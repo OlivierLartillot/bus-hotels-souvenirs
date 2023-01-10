@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\InfosClient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @extends ServiceEntityRepository<InfosClient>
@@ -39,20 +40,19 @@ class InfosClientRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return InfosClient[] Returns an array of InfosClient objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return InfosClient[] Returns an array of InfosClient objects
+     */
+    public function findByDateMore(): array
+    {
+        $today = date("y-m-d");    
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.day >= :today')
+            ->setParameter('today', $today)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?InfosClient
 //    {

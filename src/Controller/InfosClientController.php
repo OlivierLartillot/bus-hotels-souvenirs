@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\InfosClient;
 use App\Form\InfosClient1Type;
+use App\Repository\InfoBusRepository;
 use App\Repository\InfosClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +20,11 @@ class InfosClientController extends AbstractController
     #[Route('admin/infos-clients', name: 'app_infos_client_index', methods: ['GET'])]
     public function index(InfosClientRepository $infosClientRepository): Response
     {
+
+        $dateNowAndMore = $infosClientRepository->findByDateMore();
+
         return $this->render('infos_client/index.html.twig', [
-            'infos_clients' => $infosClientRepository->findAll(),
+            'infos_clients' => $dateNowAndMore,
         ]);
     }
 

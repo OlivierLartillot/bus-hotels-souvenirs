@@ -13,6 +13,7 @@
                 <th>Id</th>
                 <th>Day</th>
                 <th>Name</th>
+                <th>Lang</th>
                 <th>Client</th>
                 <th>Commerçant</th>
 {#                 <th>NumberPersons</th>
@@ -22,11 +23,12 @@
  #}            </tr>
         </thead>
         <tbody>
-        {% for infos_client in infos_clients %}
+        {% for infos_client in infos_clients|sort((a, b) => a.day <=> b.day) %}
             <tr>
                 <td>{{ infos_client.id }}</td>
                 <td>{{ infos_client.day ? infos_client.day|date('d M') : '' }}</td>
                 <td>{{ infos_client.name }}</td>
+                <td>{{ infos_client.language }}</td>
 {#                 <td>{{ infos_client.numberPersons }}</td>
                 <td>{{ infos_client.bus.hotel }}</td>
                 <td>{{ infos_client.roomNumber }}</td>

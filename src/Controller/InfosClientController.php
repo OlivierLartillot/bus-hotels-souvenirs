@@ -36,16 +36,17 @@ class InfosClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
 
+            
             $infosClientRepository->save($infosClient, true);
 
-            return $this->render('infos_client/confirmation.html.twig', [
-                'test' => "ceci est la phrase de test",
-                'infosClient' => $infosClient
+            return $this->redirectToRoute('app_confirmation', [
+                'infosClientName' => $infosClient->getName(),
+                'infosClientId' => $infosClient->getId(),
             ]);
         }
 
         $errorsMessage = null;
-        $errors = $validator->validate($infosClient );
+        $errors = $validator->validate($infosClient);
         if (count($errors) > 0) {
             $errorsMessage = $translator->trans('"The form contains some errors. Please check your answers."');
         }
@@ -58,12 +59,16 @@ class InfosClientController extends AbstractController
         ]);
     }
 
-    #[Route('confirmation', name: 'app_confirmation', methods: ['GET'])]
-    public function confirmation(): Response
+    #[Route('confirmation/{infosClientName}/{infosClientId}', name: 'app_confirmation')]
+    public function confirmation($infosClientName, $infosClientId, InfosClientRepository $infosClientRepository ): Response
     {
-
+        $infosClient = $infosClientRepository->findOneBy([
+            'name' => $infosClientName,
+            'id' => $infosClientId
+         ]);
+       
         return $this->render('infos_client/confirmation.html.twig', [
-           
+           'infosClient' => $infosClient
         ]);
     }
 

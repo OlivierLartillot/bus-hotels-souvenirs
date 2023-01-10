@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -35,7 +36,12 @@ class InfosClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
+            // enregistre la langue locale comme langue du client
+            $infosClient->setLanguage($request->getLocale());
+            // enregistre le nom en slug
+            $slugger = new AsciiSlugger();
+            $slug = $slugger->slug($infosClient->getName());
+            $infosClient->setSlug($slug); 
             
             $infosClientRepository->save($infosClient, true);
 

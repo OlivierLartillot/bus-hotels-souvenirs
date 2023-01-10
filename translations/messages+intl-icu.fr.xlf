@@ -41,52 +41,50 @@
         <source>"The form contains some errors. Please check your answers."</source>
         <target>Le formulaire contient des erreurs. Merci de regarder vos réponses.</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ1" resname="Select your residence hotel">
+      <trans-unit id="ggRXnA_" resname="Select your residence hotel">
         <source>Select your residence hotel</source>
-    	<target>Séléctionnez votre hôtel de résidence</target>
+        <target>Séléctionnez votre hôtel de résidence</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ10" resname="Buses do not run on Sundays !">
+      <trans-unit id="hdswYrZ" resname="Buses do not run on Sundays !">
         <source>Buses do not run on Sundays !</source>
         <target>Les bus ne circulent pas le dimanche !</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ2" resname="Day">
+      <trans-unit id="jyNk4Ru" resname="Day">
         <source>Day</source>
         <target>Jour</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ3" resname="Next step">
+      <trans-unit id="KYqSB6c" resname="Next step">
         <source>Next step</source>
         <target>Suivant</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ4" resname="Last step">
+      <trans-unit id="fI_J2v." resname="Last step">
         <source>Last step</source>
         <target>Dernière étape</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1234" resname="Validate">
+      <trans-unit id="QGEau92" resname="Validate">
         <source>Validate</source>
         <target>Valider</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1235" resname="Name">
+      <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
         <target>Nom</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1236" resname="Number of persons">
+      <trans-unit id="KB5fQHi" resname="Number of persons">
         <source>Number of persons</source>
         <target>Nombre de personnes</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1237" resname="Room number">
+      <trans-unit id=".vvWtOP" resname="Room number">
         <source>Room number</source>
         <target>Numéro de chambre</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1238" resname="Whats app number">
+      <trans-unit id="DLdtTXc" resname="Whats app number">
         <source>Whats app number</source>
         <target>Numéro Whats'App</target>
       </trans-unit>
-      <trans-unit id="dfqsqs1239" resname="-- Please  choose a value --">
+      <trans-unit id="ikF2cqh" resname="-- Please  choose a value --">
         <source>-- Please  choose a value --</source>
         <target>-- Séléctionnez votre Hôtel --</target>
       </trans-unit>
-	  
-
     </body>
   </file>
 </xliff>

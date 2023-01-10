@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WhatsAppController!{% endblock %}
+
+{% block body %}
+
+    <h1>WhatsApp du commercant</h1>
+
+<div id="message">{# https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax #}
+{{ infosClient.day|format_datetime(pattern="EEEE D", locale='es')|capitalize }}
+LODS {{ infosClient.numberPersons }}
+{{ infosClient.bus.hotel }} - {{ infosClient.roomNumber }}</div>
+
+<div id="tel">{{ infosClient.whatsAppNumber }}</div>
+
+    <script>
+
+    let message = document.querySelector('#message').textContent
+    let phone = document.querySelector('#tel').textContent
+
+    console.log(message)
+    window.location.href = encodeURI('https://api.whatsapp.com/send?phone=+1 (829) 397-3920&text=' + message);
+</script>
+
+{% endblock %}

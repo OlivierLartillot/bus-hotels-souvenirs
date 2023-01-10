@@ -34,10 +34,10 @@
                 <td>{{ infos_client.roomNumber }}</td>
                 <td>{{ infos_client.whatsAppNumber }}</td>
  #}                <td>
-                    <a href="{{ path('app_infos_client_edit', {'id': infos_client.id}) }}" class="btn btn-danger">Client</a>
+                    <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="btn btn-danger">Client</a>
                    </td><td>
 
-                    <a href="{{ path('app_infos_client_show', {'id': infos_client.id}) }}" class="btn btn-danger">Commercante</a>
+                    <a href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="btn btn-danger">Commercante</a>
                 </td>
             </tr>
         {% else %}

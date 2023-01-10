@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New InfosClient{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class ="text-center my-3">Enter your information</h1>
+
+
+    <div id="form_wrapper" class="mt-5 p-3 bg-light">
+    {{ form_start(form)  }}
+
+        {% if errorsMessage != null %} 
+            <div>
+                <span class="text-danger">{{ errorsMessage }}</span>
+                <ul>
+                {% for error in errors %}
+                    <li> {{ error.message }} </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div id="preStep">
+            <div  class="">
+            {{ form_row(form.bus) }}
+
+            </div>
+            <div id="divNextStepButton" class="text-center d-none">
+                {{ form_row(form.nextStep) }}
+            </div>
+        </div>
+
+        <div id="secondStep" class="d-none">
+            <div class="">
+                {{ form_row(form.day) }}
+            </div>
+            <div id="divLastStepButton" class="text-center d-none">
+                {{ form_row(form.lastStep) }}
+            </div>
+        </div> 
+
+        <div id="thirdStep" class ="d-none">
+            <div class="">
+            {{ form_row(form.name) }}
+            </div>
+            <div class="">
+            {{ form_row(form.numberPersons) }}
+            </div>
+            <div class="">
+            {{ form_row(form.roomNumber) }}
+            </div>
+            <div class="">
+            {{ form_row(form.whatsAppNumber) }}
+            </div>
+
+            <div class="text-center">
+            {{ form_row(form.validate) }}
+            </div>
+            <div class="text-center">
+                <input type="hidden" value="{{ app.session.get('_locale') }}"/>
+            </div>
+            
+            {{ form_widget(form._token) }}
+        </div>
+
+
+
+    {{ form_end(form) }}
+    
+    </div>
+
+
+
+
+    {# {{ include('infos_client/_form.html.twig') }} #}
+
+{#     <a href="{{ path('app_infos_client_index') }}" class="btn btn-primary">back to list</a>
+ #}</div>
+
+
+ <script src="{{ asset('js/form.js') }}" />
+{% endblock %}

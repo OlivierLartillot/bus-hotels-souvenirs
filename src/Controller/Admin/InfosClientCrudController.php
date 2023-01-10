@@ -22,16 +22,12 @@ class InfosClientCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            DateField::new('day'),
-            TextField::new('name'),
-            IntegerField::new('numberPersons'),
-            IntegerField::new('roomNumber'),
-            TextField::new('whatsAppNumber'),
-            AssociationField::new('bus'),
-
-
-
-      
+            DateField::new('day', 'Jour'),
+            TextField::new('name', 'Nom'),
+            IntegerField::new('numberPersons', 'Nbre personnes'),
+            IntegerField::new('roomNumber', 'N° chambre'),
+            TextField::new('whatsAppNumber', 'WhatsApp'),
+            AssociationField::new('bus', 'Hotel'),
         ];
     }
    

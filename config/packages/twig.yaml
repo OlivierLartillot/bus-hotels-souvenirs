@@ -1,5 +1,7 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    # On déclare bootstrap dans twig
+    form_themes: ['bootstrap_5_layout.html.twig']
     # On déclare ci-dessous le nom de la variable globale
     globals:
         locales: '%app.locales%'

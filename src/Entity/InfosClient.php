@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\InfosClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: InfosClientRepository::class)]
 class InfosClient
@@ -17,12 +19,14 @@ class InfosClient
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThanOrEqual('today', null, 'The date must be equal to or greater than today.')]
     private ?\DateTimeInterface $day = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\LessThan(20)]
     private ?int $numberPersons = null;
 
     #[ORM\Column]
@@ -35,7 +39,20 @@ class InfosClient
     #[ORM\JoinColumn(nullable: false)]
     private ?InfoBus $bus = null;
 
+    #[ORM\Column(length: 4)]
+    private ?string $language = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    public function __construct()
+    {
+        $this->day = new \DateTime('now');
+        $this->created_at = new \DateTimeImmutable('now');
+    }
 
     public function getId(): ?int
     {
@@ -110,6 +127,61 @@ class InfosClient
     public function setBus(?InfoBus $bus): self
     {
         $this->bus = $bus;
+
+        return $this;
+    }
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // somehow you have an array of "fake names"
+        $dayOfWeek = $this->getDay()->format('D');
+        $isSunday = false;
+
+        if ($dayOfWeek == "Sun") {
+            $isSunday = true;
+        }
+        
+        // check if the name is actually a fake name
+        if ($isSunday) {
+            $context->buildViolation('You can\'t choose a Sunday !')
+                ->atPath('day')
+                ->addViolation();
+        }
+    }
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(string $language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

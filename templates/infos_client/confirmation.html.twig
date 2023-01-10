@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New InfosClient{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h2 class="my-3 text-center">Confirmation de réservation</h2>
+
+
+        Votre numéro à communiquer : {{ infosClient.id }} <br>
+
+        <p class=" text-danger text-center bg-light rounded p-2"> 
+            Le chauffeur viendra vous chercher le {{ infosClient.day|format_date('full') }} <br>
+            Lieu de Rdv: {{ infosClient.bus.location }}, {{ infosClient.bus.hotel }} <br>
+            à {{ infosClient.bus.hour|date("H:i") }}   
+        </p>
+
+        <ul>
+        <li><u>Nom:</u> {{ infosClient.name }} </li>
+        <li><u>Whats'App:</u>  {{ infosClient.whatsAppNumber }} ! </li>
+        
+        <li><u>Nombre de places:</u>  {{ infosClient.numberPersons }} place(s)</li>
+        <li><u>Chambre:</u>  {{ infosClient.roomNumber }} </li>
+        </ul>
+    
+    </div>
+
+
+{% endblock %}
+

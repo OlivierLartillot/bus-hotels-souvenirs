@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\InfoBus;
 use App\Entity\InfosClient;
 use App\Entity\LieuDeRdv;
+use App\Repository\InfosClientRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -14,8 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
+
     public function index(): Response
     {
+
         //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -44,8 +47,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToRoute('WhatsApp','fas fa-list', 'app_infos_client_index');
+        yield MenuItem::linkToCrud('Infos Clients', 'fas fa-list', InfosClient::class);
         yield MenuItem::linkToCrud('Lieu de RDV', 'fas fa-list', LieuDeRdv::class);
         yield MenuItem::linkToCrud('Infos Bus', 'fas fa-list', InfoBus::class);
-        yield MenuItem::linkToCrud('Infos Clients', 'fas fa-list', InfosClient::class);
     }
 }

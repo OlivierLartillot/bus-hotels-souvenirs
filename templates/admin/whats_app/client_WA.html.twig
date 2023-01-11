@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WhatsAppController!{% endblock %}
+
+{% block body %}
+
+    <h1>WhatsApp du client</h1>
+
+{# ! Décliné en plusieurs langues ici pour plus de simplicité plutot que d'utiliser la traduction ! #}
+{# ! Pas d'intentation pour des messages formatés sur whatsapp #}
+
+
+{{infosClient.language}}
+
+
+{# !!! Francais #}
+{% if infosClient.language == 'fr' %}
+<div id="message">
+Souvenirs Tour: 
+
+Le chauffeur aura la même tenu que sur la photo 
+https://unsplash.com/fr/photos/mpwF3Mv2UaU
+
+Nom:
+{{ infosClient.name }}
+
+Rendez-vous:
+{{ infosClient.bus.location|trans }} à {{ infosClient.bus.hour|date('H:i') }}  le {{ infosClient.day|date('d M') }}
+
+Hotel:
+{{ infosClient.bus.hotel }}
+</div>
+
+{# !!! Englais #}
+{% elseif infosClient.language == 'en' %}
+    
+<div id="message">
+Souvenirs Tour: 
+
+The driver will have the same outfit as in the photo 
+https://unsplash.com/fr/photos/mpwF3Mv2UaU
+
+Name:
+{{ infosClient.name }}
+
+Appointment:
+{{ infosClient.bus.location }} at {{ infosClient.bus.hour|date('H:i') }}, {{ infosClient.day|date('M d') }}
+
+Hotel:
+{{ infosClient.bus.hotel }}
+</div>
+
+
+
+    {% endif %}
+
+<div id="tel">{{ infosClient.codeAndPhone }}</div>
+
+
+<script>
+
+    let message = document.querySelector('#message').textContent
+    let phone = document.querySelector('#tel').textContent
+
+    console.log(message)
+    window.location.href = encodeURI('https://api.whatsapp.com/send?phone='+ phone +'&text=' + message);
+</script>
+
+{% endblock %}

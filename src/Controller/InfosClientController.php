@@ -38,6 +38,7 @@ class InfosClientController extends AbstractController
         $form = $this->createForm(InfosClient1Type::class, $infosClient);
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             // enregistre la langue locale comme langue du client
@@ -46,7 +47,8 @@ class InfosClientController extends AbstractController
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug($infosClient->getName());
             $infosClient->setSlug($slug); 
-            
+            $infosClient->setEnvoiClient(false); 
+            $infosClient->setEnvoiCommercant(false); 
             $infosClientRepository->save($infosClient, true);
 
             return $this->redirectToRoute('app_confirmation', [
@@ -97,6 +99,7 @@ class InfosClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $infosClientRepository->save($infosClient, true);
 
             return $this->redirectToRoute('app_infos_client_index', [], Response::HTTP_SEE_OTHER);

@@ -6,10 +6,16 @@
 
     <h1>WhatsApp du client</h1>
 
+{# ! Décliné en plusieurs langues ici pour plus de simplicité plutot que d'utiliser la traduction ! #}
+{# ! Pas d'intentation pour des messages formatés sur whatsapp #}
+
+
 {{infosClient.language}}
 
-    {% if infosClient.language == 'fr' %}
-            <div id="message">
+
+{# !!! Francais #}
+{% if infosClient.language == 'fr' %}
+<div id="message">
 Souvenirs Tour: 
 
 Le chauffeur aura la même tenu que sur la photo 
@@ -19,16 +25,16 @@ Nom:
 {{ infosClient.name }}
 
 Rendez-vous:
-{{ infosClient.bus.location }} à {{ infosClient.bus.hour|date('H:i') }}  le {{ infosClient.day|date('d M') }}
+{{ infosClient.bus.location|trans }} à {{ infosClient.bus.hour|date('H:i') }}  le {{ infosClient.day|date('d M') }}
 
 Hotel:
 {{ infosClient.bus.hotel }}
+</div>
 
-    </div>
-
-    {% elseif infosClient.language == 'en' %}
+{# !!! Englais #}
+{% elseif infosClient.language == 'en' %}
     
-    <div id="message">
+<div id="message">
 Souvenirs Tour: 
 
 The driver will have the same outfit as in the photo 
@@ -42,17 +48,16 @@ Appointment:
 
 Hotel:
 {{ infosClient.bus.hotel }}
-
-    </div>
+</div>
 
 
 
     {% endif %}
 
-<div id="tel">{{ infosClient.whatsAppNumber }}</div>
+<div id="tel">{{ infosClient.codeAndPhone }}</div>
 
 
-    <script>
+<script>
 
     let message = document.querySelector('#message').textContent
     let phone = document.querySelector('#tel').textContent

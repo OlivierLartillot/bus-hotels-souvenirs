@@ -5,6 +5,11 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <!-- ! traduction du menu ! -->
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Accueil</target>
+      </trans-unit>
       <trans-unit id="MgLBxGg" resname="Specials Thanks to the artists:">
         <source>Specials Thanks to the artists:</source>
         <target>Remerciements des artistes:</target>
@@ -13,6 +18,7 @@
         <source>Please Check your language</source>
         <target>Choissisez votre language</target>
       </trans-unit>
+      <!-- ! traduction du formulaire ! -->
       <trans-unit id="r1K4tyV" resname="You have choosen the english langage, do you want to continue ?">
         <source>You have choosen the english langage, do you want to continue ?</source>
         <target>Vous avez choisi le français, voulez vous continuer ?</target>
@@ -32,10 +38,6 @@
       <trans-unit id="WoZGx29" resname="Bus tour">
         <source>Bus tour</source>
         <target>Bus tour</target>
-      </trans-unit>
-      <trans-unit id="OnhpU4i" resname="Home">
-        <source>Home</source>
-        <target>Accueil</target>
       </trans-unit>
       <trans-unit id="x1wQ8r2" resname="&quot;The form contains some errors. Please check your answers.&quot;">
         <source>"The form contains some errors. Please check your answers."</source>
@@ -84,6 +86,15 @@
       <trans-unit id="ikF2cqh" resname="-- Please  choose a value --">
         <source>-- Please  choose a value --</source>
         <target>-- Séléctionnez votre Hôtel --</target>
+      </trans-unit>
+      <!-- ! Traduction des "locations" ! -->
+      <trans-unit id="mR26PKx" resname="Barrera / Fuera del Hotel">
+        <source>Barrera / Fuera del Hotel</source>
+        <target>Barrière / en dehors de l'hotel</target>
+      </trans-unit>
+      <trans-unit id="mR26PKx2" resname="Lobby">
+        <source>Lobby</source>
+        <target>Hall</target>
       </trans-unit>
     </body>
   </file>

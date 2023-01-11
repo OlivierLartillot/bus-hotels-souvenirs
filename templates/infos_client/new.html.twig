@@ -51,8 +51,14 @@
             <div class="">
             {{ form_row(form.roomNumber) }}
             </div>
-            <div class="">
-            {{ form_row(form.whatsAppNumber) }}
+            <div class="form-group border rounded p-3">
+                <h3>WhatsApp Info</h3>
+                    <div class="col-5">
+                        {{ form_row(form.telephoneCode) }}
+                    </div>
+                    <div class="col-7">
+                        {{ form_row(form.whatsAppNumber) }}
+                    </div>
             </div>
 
             <div class="text-center">

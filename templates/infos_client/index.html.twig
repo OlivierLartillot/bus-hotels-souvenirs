@@ -6,7 +6,13 @@
 {% block body %}
 
 <div class="container">
-    <h1>Envoi des WhatsApp</h1>
+    <div class="row my-3">
+        <h1>Envoi des WhatsApp</h1>
+
+    </div>
+    <div class="mb-3">
+        <a href="{{ path('admin') }}" class="btn btn-primary ">Retour admin</a>
+    </div>
 <div class="table-responsive">
   <table class="table">
         <thead>
@@ -17,11 +23,7 @@
                 <th>Lang</th>
                 <th>Client</th>
                 <th>Commerçant</th>
-{#                 <th>NumberPersons</th>
-                <th>RoomNumber</th>
-                <th>WhatsAppNumber</th>
-                <th>actions</th>
- #}            </tr>
+            </tr>
         </thead>
         <tbody>
         {% for infos_client in infos_clients|sort((a, b) => a.day <=> b.day) %}
@@ -35,10 +37,10 @@
                 <td>{{ infos_client.roomNumber }}</td>
                 <td>{{ infos_client.whatsAppNumber }}</td>
  #}                <td>
-                        <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="lienClient {% if infos_client.envoiClient == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Client</a>
+                        <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiClient == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Client</a>
                    </td>
                    <td>
-                    <a id="lienCommercant" href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="{% if infos_client.envoiCommercant == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Commercante</a>
+                        <a href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiCommercant == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Commercante</a>
                     </td>
             </tr>
         {% else %}
@@ -50,33 +52,10 @@
     </table>
 </div>
 
-    <a href="{{ path('app_infos_client_new') }}">Create new</a>
+    
 </div>
 
 
-       <script>
-       let liens = document.querySelectorAll('.lienClient');
-       console.log('liste des liens' + liens)
-        
-            for (let lien of liens) {
-                console.log('chaque lien : ' + lien)
-                lien.addEventListener('click', handleClick);
-            }
-
-                function handleClick (event) {
-                
-                var url = this.getAttribute('href');
-                event.preventDefault();
-                window.open(url);
-                window.setTimeout(() => {
-                    location.reload(true);
-                }, 2000);
-                    
-                
-                }   
-
-
-
-        </script>
+    <script src="{{ asset('js/buttonWhatsApp.js') }}"></script>
 
 {% endblock %}

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -43,7 +44,7 @@ class InfosClient1Type extends AbstractType
             ])     
             ->add('nextStep', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
-                'label' => 'Next step'
+                'label' => 'Next step',
             ])
             ->add('day', null , [
                 'widget' => 'single_text',
@@ -56,14 +57,24 @@ class InfosClient1Type extends AbstractType
             ])
             ->add('lastStep', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
-                'label' => 'Last step'
+                'label' => 'Last step',
             ])
             ->add('name')
             ->add('numberPersons', null , [
                 'label' => 'Number of persons' 
                 ])
             ->add('roomNumber')
-            ->add('whatsAppNumber')
+            ->add('telephoneCode',ChoiceType::class, [
+                'label' => 'Code',
+                'choices'  => [
+                    'Rus +7' => 7,
+                    'Fr +33' => 33,
+                    'Usa +1' => 1,
+                ],
+            ])
+            ->add('whatsAppNumber', TelType::class, [
+                'label' => 'Telephone'
+            ])
             ->add('validate', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])

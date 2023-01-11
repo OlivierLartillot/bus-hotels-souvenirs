@@ -54,6 +54,9 @@ class InfosClient
     #[ORM\Column]
     private ?bool $envoiCommercant = null;
 
+    #[ORM\Column(length: 6)]
+    private ?string $telephoneCode = null;
+
     public function __construct()
     {
         $this->day = new \DateTime('now');
@@ -124,6 +127,14 @@ class InfosClient
 
         return $this;
     }
+
+    public function getCodeAndPhone() {
+        return  $this->telephoneCode .''.$this->whatsAppNumber;
+    }  
+
+    public function getFormatedCodeAndPhone() {
+        return  '+'.$this->telephoneCode .' - '.$this->whatsAppNumber;
+    }   
 
     public function getBus(): ?InfoBus
     {
@@ -212,6 +223,18 @@ class InfosClient
     public function setEnvoiCommercant(bool $envoiCommercant): self
     {
         $this->envoiCommercant = $envoiCommercant;
+
+        return $this;
+    }
+
+    public function getTelephoneCode(): ?string
+    {
+        return $this->telephoneCode;
+    }
+
+    public function setTelephoneCode(string $telephoneCode): self
+    {
+        $this->telephoneCode = $telephoneCode;
 
         return $this;
     }

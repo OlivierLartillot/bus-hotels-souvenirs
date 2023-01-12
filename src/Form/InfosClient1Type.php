@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\InfoBus;
 use App\Entity\InfosClient;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Locale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -78,6 +80,13 @@ class InfosClient1Type extends AbstractType
             ->add('validate', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'infosClient',
+
+            ]);
+
+
             ;
     }
 

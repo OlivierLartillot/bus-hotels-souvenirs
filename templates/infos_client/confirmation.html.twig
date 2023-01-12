@@ -9,6 +9,19 @@
     <div class="container bg-light p-3 rounded">
 
         <h2 class="mt-3 mb-5 text-center">Confirmation de réservation</h2>
+        {# read and display just one flash message type #}
+
+        {# read and display several types of flash messages #}
+        {% for message in app.flashes('success') %}
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center flash-success bg-success-subtle border rounded shadow p-3 mb-3">
+                    <div>
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            
 
         <div class="row justify-content-center">
             <div class="col-md-6 text-danger text-center bg-light border rounded shadow p-3 mb-3">

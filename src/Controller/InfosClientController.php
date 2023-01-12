@@ -51,6 +51,11 @@ class InfosClientController extends AbstractController
             $infosClient->setEnvoiCommercant(false); 
             $infosClientRepository->save($infosClient, true);
 
+            $this->addFlash(
+                'success',
+                'Your registration has been taken into account'
+            );
+
             return $this->redirectToRoute('app_confirmation', [
                 'infosClientName' => $infosClient->getName(),
                 'infosClientId' => $infosClient->getId(),

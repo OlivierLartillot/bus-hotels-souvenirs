@@ -14,10 +14,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
 
+    private $infosClientRepository;
+
+    public function __construct(InfosClientRepository $infosClientRepository)
+    {
+        $this->infosClientRepository = $infosClientRepository;
+    }
+
+
+
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+
+
+        $dateNowAndMore = $this->infosClientRepository->findByDateMore();
+
+        return $this->render('admin/dashboard.html.twig', [
+            'infos_clients' => $dateNowAndMore,
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
 
         //return parent::index();
 
@@ -47,9 +75,18 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToRoute('WhatsApp','fas fa-list', 'app_infos_client_index');
-        yield MenuItem::linkToCrud('Infos Clients', 'fas fa-list', InfosClient::class);
-        yield MenuItem::linkToCrud('Lieu de RDV', 'fas fa-list', LieuDeRdv::class);
-        yield MenuItem::linkToCrud('Infos Bus', 'fas fa-list', InfoBus::class);
+        yield MenuItem::subMenu('Gestion Clients', 'fa fa-users')->setPermission('')
+            ->setSubItems([
+                MenuItem::linkToRoute('WhatsApp','fa fa-rocket', 'app_infos_client_index'),
+                MenuItem::linkToCrud('Infos Clients', 'fa fa-address-book', InfosClient::class),
+            ]
+        );
+        
+        yield MenuItem::subMenu('Gestion Bus', 'fa fa-bus')
+            ->setSubItems([
+                MenuItem::linkToCrud('Lieu de RDV', 'fa fa-map-marker', LieuDeRdv::class),
+                MenuItem::linkToCrud('Infos Bus', 'fa fa-building', InfoBus::class),
+            ]
+        );
     }
 }

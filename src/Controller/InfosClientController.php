@@ -23,7 +23,7 @@ class InfosClientController extends AbstractController
 
         $dateNowAndMore = $infosClientRepository->findByDateMore();
 
-        return $this->render('infos_client/index.html.twig', [
+        return $this->render('admin/whats_app_sent.html.twig', [
             'infos_clients' => $dateNowAndMore,
         ]);
     }

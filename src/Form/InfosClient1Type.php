@@ -50,12 +50,12 @@ class InfosClient1Type extends AbstractType
             ])
             ->add('day', null , [
                 'widget' => 'single_text',
-                'help' => 'Buses do not run on Sundays !',
-                'help_attr'=> ['class'=> 'text-danger fs-4'],
+                'help' => 'Warning: Buses do not run on Sundays !',
+                'help_attr'=> ['class'=> 'text-danger fs-6'],
                 'help_translation_parameters' => [
-                    '%day%' => 'Buses don\'t work at Sunday !',
+                    '%day%' => 'Busess don\'t work at Sunday !',
                 ],
-                'attr' => ['class' => 'd-block'],
+                'attr' => ['class' => 'd-block', ],
             ])
             ->add('lastStep', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-primary'],

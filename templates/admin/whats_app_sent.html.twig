@@ -1,0 +1,62 @@
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Bienvenue sur le dashboard{% endblock %}
+{% block page_actions %}
+    {# <a class="btn btn-primary" href="...">Some Action</a> #}
+{% endblock %}
+
+{% block main %}
+
+<div class="container pb-5 mb-5 rounded">
+    <div class="row my-3">
+        <h1>Envoi des WhatsApp</h1>
+
+    </div>
+
+    <div class="table-responsive border rounded shadow">
+        <table class="table table-hover">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th>Id</th>
+                    <th>J.</th>
+                    <th>Name</span></th>
+                    <th>La.</th>
+                    <th>Client</th>
+                    <th>Commerçant</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for infos_client in infos_clients|sort((a, b) => a.day <=> b.day) %}
+                <tr>
+                    <td>{{ infos_client.id }}</td>
+                    <td>{{ infos_client.day ? infos_client.day|date('d M') : '' }}</td>
+                    <td>{{ infos_client.name }}</td>
+                    <td>{{ infos_client.language }}</td>
+    {#                 <td>{{ infos_client.numberPersons }}</td>
+                    <td>{{ infos_client.bus.hotel }}</td>
+                    <td>{{ infos_client.roomNumber }}</td>
+                    <td>{{ infos_client.whatsAppNumber }}</td>
+    #}                <td>
+                            <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiClient == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Client</a>
+                    </td>
+                    <td>
+                            <a href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiCommercant == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Commercante</a>
+                        </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+</div>
+
+
+    <script src="{{ asset('js/buttonWhatsApp.js') }}"></script>
+
+{% endblock %}

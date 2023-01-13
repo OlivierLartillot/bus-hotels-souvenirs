@@ -8,57 +8,39 @@
 
 {% block main %}
 
-<div class="container bg-dark pb-5 mb-5 rounded">
-    <div class="row my-3">
-        <h1>Envoi des WhatsApp</h1>
-
-    </div>
-    <div class="mb-3">
-        <a href="{{ path('admin') }}" class="btn btn-primary ">Retour admin</a>
-    </div>
-    <div class="table-responsive bg-light rounded border shadow">
-        <table class="table">
-            <thead>
+<h2 class="text-center my-5">Tableau des envois restant</h2>
+    <div class="row justify-content-center">
+        <div class="table-responsive col-md-6 border rounded shadow p-0">
+            <table class="table table-hover table-bordered table-striped text-center mb-0">
+                <thead>
+                    <tr class="bg-dark text-white">
+                        <th>Jour</th>
+                        <th>Client</th>
+                        <th>Commercant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for data in whatsAppToSendByDay %}
                 <tr>
-                    <th>Id</th>
-                    <th>Day</th>
-                    <th>Name</th>
-                    <th>Lang</th>
-                    <th>Client</th>
-                    <th>Commerçant</th>
+                    <td>{{data.jour}}</td>
+                    {% if data.client == 0%}
+                        <td class="w-25 bg-success text-white">{{data.client}}</td>
+                    {% else %}
+                        <td class="w-25 bg-danger text-white">
+                            <a href="admin?routeName=app_infos_client_index" class="td-cliquable"> 
+                        {{data.client}}</a></td>
+                    {% endif %}
+                    {% if data.commercant == 0%}
+                        <td class="w-25  bg-success text-white">{{data.commercant}}</td>
+                    {% else %}
+                        <td class="w-25  bg-danger text-white">
+                            <a href="admin?routeName=app_infos_client_index" class="td-cliquable"> 
+                        {{data.commercant}}</a></td>
+                    {% endif %}
                 </tr>
-            </thead>
-            <tbody>
-            {% for infos_client in infos_clients|sort((a, b) => a.day <=> b.day) %}
-                <tr>
-                    <td>{{ infos_client.id }}</td>
-                    <td>{{ infos_client.day ? infos_client.day|date('d M') : '' }}</td>
-                    <td>{{ infos_client.name }}</td>
-                    <td>{{ infos_client.language }}</td>
-    {#                 <td>{{ infos_client.numberPersons }}</td>
-                    <td>{{ infos_client.bus.hotel }}</td>
-                    <td>{{ infos_client.roomNumber }}</td>
-                    <td>{{ infos_client.whatsAppNumber }}</td>
-    #}                <td>
-                            <a href="{{ path('app_whats_app_client', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiClient == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Client</a>
-                    </td>
-                    <td>
-                            <a href="{{ path('app_whats_app_commercant', {'client': infos_client.id}) }}" class="linkButton {% if infos_client.envoiCommercant == false %} btn btn-danger {% else %}btn btn-success {% endif %}">Commercante</a>
-                        </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    
-</div>
-
-
-    <script src="{{ asset('js/buttonWhatsApp.js') }}"></script>
-
 {% endblock %}

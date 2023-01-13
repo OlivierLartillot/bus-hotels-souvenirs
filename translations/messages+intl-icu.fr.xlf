@@ -5,7 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <!-- ! traduction du menu ! -->
       <trans-unit id="OnhpU4i" resname="Home">
         <source>Home</source>
         <target>Accueil</target>
@@ -18,7 +17,6 @@
         <source>Please Check your language</source>
         <target>Choissisez votre language</target>
       </trans-unit>
-      <!-- ! traduction du formulaire ! -->
       <trans-unit id="r1K4tyV" resname="You have choosen the english langage, do you want to continue ?">
         <source>You have choosen the english langage, do you want to continue ?</source>
         <target>Vous avez choisi le français, voulez vous continuer ?</target>
@@ -47,9 +45,9 @@
         <source>Select your residence hotel</source>
         <target>Séléctionnez votre hôtel de résidence</target>
       </trans-unit>
-      <trans-unit id="hdswYrZ" resname="Buses do not run on Sundays !">
-        <source>Buses do not run on Sundays !</source>
-        <target>Les bus ne circulent pas le dimanche !</target>
+      <trans-unit id="gT26f9O" resname="Warning: Buses do not run on Sundays !">
+        <source>Warning: Buses do not run on Sundays !</source>
+        <target>Attention: Les bus ne circulent pas le dimanche !</target>
       </trans-unit>
       <trans-unit id="jyNk4Ru" resname="Day">
         <source>Day</source>
@@ -87,14 +85,41 @@
         <source>-- Please  choose a value --</source>
         <target>-- Séléctionnez votre Hôtel --</target>
       </trans-unit>
-      <!-- ! Traduction des "locations" ! -->
       <trans-unit id="mR26PKx" resname="Barrera / Fuera del Hotel">
         <source>Barrera / Fuera del Hotel</source>
         <target>Barrière / en dehors de l'hotel</target>
       </trans-unit>
-      <trans-unit id="mR26PKx2" resname="Lobby">
+      <trans-unit id="TJep75X" resname="Lobby">
         <source>Lobby</source>
         <target>Hall</target>
+      </trans-unit>
+      <trans-unit id="fpdupeo" resname="The driver will pick you up on">
+        <source>The driver will pick you up on</source>
+        <target>Le chauffeur viendra vous chercher le</target>
+      </trans-unit>
+      <trans-unit id="8IGDBZ." resname="Meeting point">
+        <source>Meeting point</source>
+        <target>Point de rencontre</target>
+      </trans-unit>
+      <trans-unit id="sda5G2f" resname="at">
+        <source>at</source>
+        <target>le</target>
+      </trans-unit>
+      <trans-unit id="w4suuPI" resname="Number of seats">
+        <source>Number of seats</source>
+        <target>Nombre de places</target>
+      </trans-unit>
+      <trans-unit id="UJs8Tl2" resname="Hotel">
+        <source>Hotel</source>
+        <target>Hotel</target>
+      </trans-unit>
+      <trans-unit id="_Ruj5th" resname="Room Number">
+        <source>Room Number</source>
+        <target>Numéro de Chambre</target>
+      </trans-unit>
+      <trans-unit id="_Ruj5th2" resname="Your registration has been taken into account">
+        <source>Your registration has been taken into account</source>
+        <target>Votre réservation a été prise en compte</target>
       </trans-unit>
     </body>
   </file>

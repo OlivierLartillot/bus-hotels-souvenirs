@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\InfosClient;
 use App\Form\InfosClient1Type;
-use App\Repository\InfoBusRepository;
 use App\Repository\InfosClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +27,7 @@ class InfosClientController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_infos_client_new', methods: ['GET', 'POST'])]
+    #[Route('user/new', name: 'app_infos_client_new', methods: ['GET', 'POST'])]
     public function new(Request $request, 
                         InfosClientRepository $infosClientRepository, 
                         ValidatorInterface $validator,
@@ -76,7 +75,7 @@ class InfosClientController extends AbstractController
         ]);
     }
 
-    #[Route('confirmation/{infosClientName}/{infosClientId}', name: 'app_confirmation')]
+    #[Route('user/confirmation/{infosClientName}/{infosClientId}', name: 'app_confirmation')]
     public function confirmation($infosClientName, $infosClientId, InfosClientRepository $infosClientRepository ): Response
     {
         $infosClient = $infosClientRepository->findOneBy([
@@ -89,7 +88,7 @@ class InfosClientController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_infos_client_show', methods: ['GET'])]
+    #[Route('user/{id}', name: 'app_infos_client_show', methods: ['GET'])]
     public function show(InfosClient $infosClient): Response
     {
         return $this->render('infos_client/show.html.twig', [

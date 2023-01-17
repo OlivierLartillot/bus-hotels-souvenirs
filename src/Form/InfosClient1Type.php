@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\InfoBus;
 use App\Entity\InfosClient;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Locale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -48,12 +50,12 @@ class InfosClient1Type extends AbstractType
             ])
             ->add('day', null , [
                 'widget' => 'single_text',
-                'help' => 'Buses do not run on Sundays !',
-                'help_attr'=> ['class'=> 'text-danger fs-4'],
+                'help' => 'Warning: Buses do not run on Sundays !',
+                'help_attr'=> ['class'=> 'text-danger fs-6'],
                 'help_translation_parameters' => [
-                    '%day%' => 'Buses don\'t work at Sunday !',
+                    '%day%' => 'Busess don\'t work at Sunday !',
                 ],
-                'attr' => ['class' => 'd-block'],
+                'attr' => ['class' => 'd-block', ],
             ])
             ->add('lastStep', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
@@ -78,6 +80,13 @@ class InfosClient1Type extends AbstractType
             ->add('validate', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'infosClient',
+
+            ]);
+
+
             ;
     }
 

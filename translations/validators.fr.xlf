@@ -537,6 +537,14 @@
         <source>Please enter a valid week.</source>
         <target>Veuillez entrer une semaine valide.</target>
       </trans-unit>
+      <trans-unit id="LHPo4u0" resname="karser_recaptcha3.message">
+        <source>karser_recaptcha3.message</source>
+        <target>Votre ordinateur ou votre réseau envoie peut-être des requêtes automatisées</target>
+      </trans-unit>
+      <trans-unit id="tdLl75o" resname="karser_recaptcha3.message_missing_value">
+        <source>karser_recaptcha3.message_missing_value</source>
+        <target>La valeur captcha est manquante</target>
+      </trans-unit>
       <trans-unit id="oig8jyE" resname="You can't choose a Sunday !">
         <source>You can't choose a Sunday !</source>
         <target>Vous ne pouvez pas choisir un dimanche car il n'y a pas de bus.</target>

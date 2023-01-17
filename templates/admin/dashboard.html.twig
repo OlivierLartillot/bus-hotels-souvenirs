@@ -1,0 +1,46 @@
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Bienvenue sur le dashboard{% endblock %}
+{% block page_actions %}
+    {# <a class="btn btn-primary" href="...">Some Action</a> #}
+{% endblock %}
+
+{% block main %}
+
+<h2 class="text-center my-5">Tableau des envois restant</h2>
+    <div class="row justify-content-center">
+        <div class="table-responsive col-md-6 border rounded shadow p-0">
+            <table class="table table-hover table-bordered table-striped text-center mb-0">
+                <thead>
+                    <tr class="bg-dark text-white">
+                        <th>Jour</th>
+                        <th>Client</th>
+                        <th>Commercant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for data in whatsAppToSendByDay %}
+                <tr>
+                    <td>{{data.jour}}</td>
+                    {% if data.client == 0%}
+                        <td class="w-25 bg-success text-white">{{data.client}}</td>
+                    {% else %}
+                        <td class="w-25 bg-danger text-white">
+                            <a href="admin?routeName=app_infos_client_index" class="td-cliquable"> 
+                        {{data.client}}</a></td>
+                    {% endif %}
+                    {% if data.commercant == 0%}
+                        <td class="w-25  bg-success text-white">{{data.commercant}}</td>
+                    {% else %}
+                        <td class="w-25  bg-danger text-white">
+                            <a href="admin?routeName=app_infos_client_index" class="td-cliquable"> 
+                        {{data.commercant}}</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

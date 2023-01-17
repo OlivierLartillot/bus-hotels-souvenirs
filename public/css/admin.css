@@ -1,0 +1,11 @@
+.td-cliquable {
+    display: block; 
+    height: 100%; 
+    width: 100%;
+    color: white;
+} 
+
+.td-cliquable:hover { 
+    color: white;
+    font-weight: bold;
+}

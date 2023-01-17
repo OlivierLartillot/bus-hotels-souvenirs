@@ -23,7 +23,7 @@ class InfosClientController extends AbstractController
 
         $dateNowAndMore = $infosClientRepository->findByDateMore();
 
-        return $this->render('infos_client/index.html.twig', [
+        return $this->render('admin/whats_app_sent.html.twig', [
             'infos_clients' => $dateNowAndMore,
         ]);
     }
@@ -50,6 +50,11 @@ class InfosClientController extends AbstractController
             $infosClient->setEnvoiClient(false); 
             $infosClient->setEnvoiCommercant(false); 
             $infosClientRepository->save($infosClient, true);
+
+            $this->addFlash(
+                'success',
+                'Your registration has been taken into account'
+            );
 
             return $this->redirectToRoute('app_confirmation', [
                 'infosClientName' => $infosClient->getName(),

@@ -1,26 +1,27 @@
-{% extends 'base.html.twig' %}
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
 
-{% block title %}InfosClient index{% endblock %}
+{% block content_title %}Bienvenue sur le dashboard{% endblock %}
+{% block page_actions %}
+    {# <a class="btn btn-primary" href="...">Some Action</a> #}
+{% endblock %}
 
+{% block main %}
 
-{% block body %}
-
-<div class="container bg-dark pb-5 mb-5 rounded">
+<div class="container pb-5 mb-5 rounded">
     <div class="row my-3">
         <h1>Envoi des WhatsApp</h1>
 
     </div>
-    <div class="mb-3">
-        <a href="{{ path('admin') }}" class="btn btn-primary ">Retour admin</a>
-    </div>
-    <div class="table-responsive bg-light rounded border shadow">
-        <table class="table">
+
+    <div class="table-responsive border rounded shadow">
+        <table class="table table-hover">
             <thead>
-                <tr>
+                <tr class="bg-dark text-white">
                     <th>Id</th>
-                    <th>Day</th>
-                    <th>Name</th>
-                    <th>Lang</th>
+                    <th>J.</th>
+                    <th>Name</span></th>
+                    <th>La.</th>
                     <th>Client</th>
                     <th>Commerçant</th>
                 </tr>

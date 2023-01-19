@@ -28,16 +28,26 @@ class InfosClientController extends AbstractController
     }
 
     #[Route('user/new', name: 'app_infos_client_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, 
-                        InfosClientRepository $infosClientRepository, 
+    public function new(Request $request,
+                        InfosClientRepository $infosClientRepository,
                         ValidatorInterface $validator,
-                        TranslatorInterface $translator): Response
-    {
+                        TranslatorInterface $translator): Response {
+
         $infosClient = new InfosClient();
+
+        // * code téléphone pré rempli --------------*
+        // pré remplir le téléphone en fonction de la réponse langue locale
+        $tabTelephoneCode = ['en' => 1, 'ru' => 7, 'fr' => 33, 'es' => 34,];
+        $locale = $request->getSession()->get('_locale');
+        // $codeLocale recoit 1,7,33,34 etc ou 1 par défaut en cas de code manquant
+        $codeLocale = (array_key_exists($locale, $tabTelephoneCode)) ? $tabTelephoneCode[$locale] : 1;
+        // set l'objet avec le code pour l'afficher dans le tri comme favori
+        $infosClient->setTelephoneCode($codeLocale);
+        //*----------------------------------------- */
+
         $form = $this->createForm(InfosClient1Type::class, $infosClient);
         $form->handleRequest($request);
 
-        
         if ($form->isSubmitted() && $form->isValid()) {
 
             // enregistre la langue locale comme langue du client
@@ -45,9 +55,9 @@ class InfosClientController extends AbstractController
             // enregistre le nom en slug
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug($infosClient->getName());
-            $infosClient->setSlug($slug); 
-            $infosClient->setEnvoiClient(false); 
-            $infosClient->setEnvoiCommercant(false); 
+            $infosClient->setSlug($slug);
+            $infosClient->setEnvoiClient(false);
+            $infosClient->setEnvoiCommercant(false);
             $infosClientRepository->save($infosClient, true);
 
             $this->addFlash(
@@ -76,15 +86,15 @@ class InfosClientController extends AbstractController
     }
 
     #[Route('user/confirmation/{infosClientName}/{infosClientId}', name: 'app_confirmation')]
-    public function confirmation($infosClientName, $infosClientId, InfosClientRepository $infosClientRepository ): Response
+    public function confirmation($infosClientName, $infosClientId, InfosClientRepository $infosClientRepository): Response
     {
         $infosClient = $infosClientRepository->findOneBy([
             'name' => $infosClientName,
             'id' => $infosClientId
-         ]);
-       
+        ]);
+
         return $this->render('infos_client/confirmation.html.twig', [
-           'infosClient' => $infosClient
+            'infosClient' => $infosClient
         ]);
     }
 
@@ -118,7 +128,7 @@ class InfosClientController extends AbstractController
     #[Route('/{id}', name: 'app_infos_client_delete', methods: ['POST'])]
     public function delete(Request $request, InfosClient $infosClient, InfosClientRepository $infosClientRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$infosClient->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $infosClient->getId(), $request->request->get('_token'))) {
             $infosClientRepository->remove($infosClient, true);
         }
 

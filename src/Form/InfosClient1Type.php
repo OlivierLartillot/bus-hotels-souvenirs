@@ -6,25 +6,25 @@ use App\Entity\InfoBus;
 use App\Entity\InfosClient;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
-use Locale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\SubmitButton;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InfosClient1Type extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
-        $builder 
-        
+        $builder         
         ->add('bus', EntityType::class, [
             'class' => InfoBus::class,
             'placeholder' => false,
@@ -51,11 +51,8 @@ class InfosClient1Type extends AbstractType
             ->add('day', null , [
                 'widget' => 'single_text',
                 'help' => 'Warning: Buses do not run on Sundays !',
-                'help_attr'=> ['class'=> 'text-danger fs-6'],
-                'help_translation_parameters' => [
-                    '%day%' => 'Busess don\'t work at Sunday !',
-                ],
-                'attr' => ['class' => 'd-block', ],
+                'help_attr'=> ['class'=> 'text-danger fs-6 d-none'],
+                'attr' => ['class' => 'd-block', 'min'=> date('Y-m-d')],
             ])
             ->add('lastStep', ButtonType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
@@ -63,16 +60,20 @@ class InfosClient1Type extends AbstractType
             ])
             ->add('name')
             ->add('numberPersons', null , [
-                'label' => 'Number of persons' 
-                ])
+                'label' => 'Number of persons',
+                'help' => 'Warning: The number max is 19 persons',
+                'help_attr'=> ['class'=> 'text-danger fs-6 d-none'],
+            ])
             ->add('roomNumber')
             ->add('telephoneCode',ChoiceType::class, [
-                'label' => 'Code',
+                'label' => 'Country Code',
                 'choices'  => [
-                    'Rus +7' => 7,
-                    'Fr +33' => 33,
-                    'Usa +1' => 1,
+                    '+1 Usa' => 1,
+                    '+7 Rus' => 7,
+                    '+33 Fr' => 33,
+                    '+34 Es' => 34,
                 ],
+                
             ])
             ->add('whatsAppNumber', TelType::class, [
                 'label' => 'Telephone'
@@ -80,14 +81,12 @@ class InfosClient1Type extends AbstractType
             ->add('validate', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
-            ->add('captcha', Recaptcha3Type::class, [
+/*             ->add('captcha', Recaptcha3Type::class, [
                 'constraints' => new Recaptcha3(),
                 'action_name' => 'infosClient',
 
-            ]);
-
-
-            ;
+            ]) */
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

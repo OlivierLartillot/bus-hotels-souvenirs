@@ -41,6 +41,7 @@
             <div class="">
                 {{ form_row(form.day) }}
             </div>
+            <div id="infos_client1_same_day_help" class="text-danger fs-6 d-none">You cannot register for today</div>
             <div id="divLastStepButton" class="text-center d-none">
                 {{ form_row(form.lastStep) }}
             </div>
@@ -91,5 +92,6 @@
  #}</div>
 
 </div>
- <script src="{{ asset('js/form.js') }}" />
+
+<script src="{{ asset('js/form.js') }}" />
 {% endblock %}

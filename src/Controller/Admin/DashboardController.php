@@ -78,6 +78,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToRoute('site', 'fa-regular fa-eye', 'app_home')->setLinkTarget("_blank");;
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::subMenu('Gestion Clients', 'fa fa-users')->setPermission('ROLE_ADMIN')
             ->setSubItems([

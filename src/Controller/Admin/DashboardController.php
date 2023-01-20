@@ -60,7 +60,6 @@ class DashboardController extends AbstractDashboardController
                 ]; 
             }
         }
-
         return $this->render('admin/dashboard.html.twig', [
             'whatsAppToSendByDay' => $whatsAppToSendByDay
         ]);
@@ -83,7 +82,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Gestion Clients', 'fa fa-users')->setPermission('ROLE_ADMIN')
             ->setSubItems([
                 MenuItem::linkToRoute('WhatsApp','fa fa-rocket', 'app_infos_client_index'),
-                MenuItem::linkToCrud('Infos Clients', 'fa fa-address-book', InfosClient::class),
+                MenuItem::linkToCrud('Infos Clients', 'fa fa-address-book', InfosClient::class)->setDefaultSort(['day' => 'DESC']),
             ]
         );
         

@@ -4,94 +4,80 @@
 
 {% block body %}
 
-<div class ="container-fluid pb-5 ">
-    
-    <h1 class ="text-center text-white py-5">Enter your information</h1>
+    <div class ="container-fluid pb-5 ">
+        
+        <h1 class ="text-center text-white py-5">{% trans %}Enter your information{% endtrans %}</h1>
+        <div class="container text-center bg-light border rounded shadow" >
+            <div id="form_wrapper" class="p-3 bg-light row justify-content-center">
+                {# START FORM #}
+                {{ form_start(form, {'attr': {'class': 'col-md-6'}})  }}
 
- 
-    <div class="container text-center bg-light border rounded shadow" >
+                    {% if errorsMessage != null %} 
+                        <div>
+                            <span class="text-danger">{{ errorsMessage }}</span>
+                            <ul>
+                            {% for error in errors %}
+                                <li> {{ error.message }} </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
 
+                    <div id="preStep">
+                        <div>
+                            {{ form_row(form.bus) }}
+                        </div>
+                        <div id="divNextStepButton" class="text-center d-none">
+                            {{ form_row(form.nextStep) }}
+                        </div>
+                    </div>
 
-    <div id="form_wrapper" class="p-3 bg-light row justify-content-center">
+                    <div id="secondStep" class="d-none">
+                        <div class="">
+                            {{ form_row(form.day) }}
+                        </div>
+                        <div id="infos_client1_same_day_help" class="text-danger fs-6 d-none">
+                            {% trans %}You cannot register for today{% endtrans %}
+                        </div>
+                        <div id="divLastStepButton" class="text-center d-none">
+                            {{ form_row(form.lastStep) }}
+                        </div>
+                    </div> 
+                    
+                    <div id="thirdStep" class ="d-none">
+                        <div class="">
+                            {{ form_row(form.name) }}
+                        </div>
+                        <div class="">
+                            {{ form_row(form.numberPersons) }}
+                        </div>
+                        <div class="">
+                            {{ form_row(form.roomNumber) }}
+                        </div>
+                        <div class="form-group border rounded p-3 mb-3">
+                            <h3>{% trans %}WhatsApp Info{% endtrans %}</h3>
+                            <div>
+                                {{ form_row(form.telephoneCode) }}
+                            </div>
+                            <div>
+                                {{ form_row(form.whatsAppNumber) }}
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            {{ form_row(form.validate) }}
+                        </div>
+                        <div class="text-center">
+                            <input type="hidden" value="{{ app.session.get('_locale') }}"/>
+                        </div>
+                        {{ form_widget(form._token) }}
+                    </div>
 
-    {{ form_start(form, {'attr': {'class': 'col-md-6'}})  }}
-
-        {% if errorsMessage != null %} 
-            <div>
-                <span class="text-danger">{{ errorsMessage }}</span>
-                <ul>
-                {% for error in errors %}
-                    <li> {{ error.message }} </li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-        <div id="preStep">
-            <div  >
-            {{ form_row(form.bus) }}
-
-            </div>
-            <div id="divNextStepButton" class="text-center d-none">
-                {{ form_row(form.nextStep) }}
+                {{ form_end(form) }}
+                {# END FORM #}
             </div>
         </div>
-
-        <div id="secondStep" class="d-none">
-            <div class="">
-                {{ form_row(form.day) }}
-            </div>
-            <div id="infos_client1_same_day_help" class="text-danger fs-6 d-none">You cannot register for today</div>
-            <div id="divLastStepButton" class="text-center d-none">
-                {{ form_row(form.lastStep) }}
-            </div>
-        </div> 
-
-        <div id="thirdStep" class ="d-none">
-            <div class="">
-            {{ form_row(form.name) }}
-            </div>
-            <div class="">
-            {{ form_row(form.numberPersons) }}
-            </div>
-            <div class="">
-            {{ form_row(form.roomNumber) }}
-            </div>
-            <div class="form-group border rounded p-3 mb-3">
-                <h3>WhatsApp Info</h3>
-                    <div class="">
-                        {{ form_row(form.telephoneCode) }}
-                    </div>
-                    <div class="">
-                        {{ form_row(form.whatsAppNumber) }}
-                    </div>
-            </div>
-
-            <div class="text-center">
-            {{ form_row(form.validate) }}
-            </div>
-            <div class="text-center">
-                <input type="hidden" value="{{ app.session.get('_locale') }}"/>
-            </div>
-            
-            {{ form_widget(form._token) }}
-        </div>
-
-
-
-    {{ form_end(form) }}
-    
     </div>
 
+<script src="{{ asset('js/form.js') }}" /></script>
 
-
-
-    {# {{ include('infos_client/_form.html.twig') }} #}
-
-{#     <a href="{{ path('app_infos_client_index') }}" class="btn btn-primary">back to list</a>
- #}</div>
-
-</div>
-
-<script src="{{ asset('js/form.js') }}" />
 {% endblock %}

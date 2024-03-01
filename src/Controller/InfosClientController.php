@@ -38,9 +38,9 @@ class InfosClientController extends AbstractController
         $form = $this->createForm(InfosClient1Type::class, $infosClient);
         $form->handleRequest($request);
 
-        
+        //dd($form->isValid());
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             // enregistre la langue locale comme langue du client
             $infosClient->setLanguage($request->getLocale());
             // enregistre le nom en slug

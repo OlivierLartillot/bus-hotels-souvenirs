@@ -12,7 +12,7 @@ Si vous voulez tester l'appli veuillez entrer ces identifiants:
 ### Utilisateur
 
 1. Le client choisi sa langue parmis: anglais / francais / espagnol / russe
-2. Le client peut réserver un bus en indiquant ces informations personnelles
+2. Le client peut réserver un bus en indiquant ses informations personnelles
 
 https://bhs.fanteam.fr/
 
